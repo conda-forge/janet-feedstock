@@ -26,7 +26,7 @@ outputs:
         - if: linux
           then:
             - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
-        - meson setup build-lib ${MESON_ARGS} --prefix="${PREFIX}" --skip-sanity-check -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+        - meson setup build-lib ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
         - meson compile -C build-lib --jobs ${CPU_COUNT}
         - meson install -C build-lib
         # Remove binary and static library, keep only shared library and headers
