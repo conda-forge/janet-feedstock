@@ -13,7 +13,7 @@ source:
   patches:
     - null-terminate.patch
 build:
-  number: 0
+  number: 1
   skip:
     - win
 
@@ -26,7 +26,7 @@ outputs:
         - if: linux
           then:
             - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
-        - meson setup build-lib --prefix="${PREFIX}" --libdir=lib --buildtype=release --optimization=2 -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+        - meson setup build-lib ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
         - meson compile -C build-lib --jobs ${CPU_COUNT}
         - meson install -C build-lib
         # Remove binary and static library, keep only shared library and headers
@@ -64,7 +64,7 @@ outputs:
         - if: linux
           then:
             - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
-        - meson setup build-bin --prefix="${PREFIX}" --libdir=lib --buildtype=release --optimization=2 -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+        - meson setup build-bin ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
         - meson compile -C build-bin --jobs ${CPU_COUNT}
         - meson install -C build-bin
         # Remove libraries, keep only binary
