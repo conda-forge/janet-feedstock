@@ -64,7 +64,7 @@ outputs:
         - if: linux
           then:
             - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
-        - meson setup build-bin ${MESON_ARGS} --prefix="${PREFIX}" --buildtype=release --optimization=2 -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+        - meson setup build-bin ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
         - meson compile -C build-bin --jobs ${CPU_COUNT}
         - meson install -C build-bin
         # Remove libraries, keep only binary
