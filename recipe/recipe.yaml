@@ -12,6 +12,7 @@ source:
   sha256: a43489328b88846e5cddbdad9274f25ee9854e337e52490a74bb7955de03c650
   patches:
     - null-terminate.patch
+    - disable-symlink.patch
 build:
   number: 2
 
@@ -34,7 +35,6 @@ outputs:
             - rm -f "${PREFIX}/lib/libjanet.a"
         - if: win
           then:
-            - set MESON_INSTALL_COPY_SYMLINKS=1
             - meson setup build-lib %MESON_ARGS% --prefix="%LIBRARY_PREFIX%" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%
             - meson compile -C build-lib --jobs %CPU_COUNT%
             - meson install -C build-lib
@@ -87,7 +87,6 @@ outputs:
             - mkdir -p "${PREFIX}/etc/conda/activate.d" "${PREFIX}/etc/conda/deactivate.d"
         - if: win
           then:
-            - set MESON_INSTALL_COPY_SYMLINKS=1
             - meson setup build-bin %MESON_ARGS% --prefix="%LIBRARY_PREFIX%" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%
             - meson compile -C build-bin --jobs %CPU_COUNT%
             - meson install -C build-bin
