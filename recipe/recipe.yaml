@@ -40,6 +40,8 @@ outputs:
             # Remove binary and static library, keep only shared library and headers
             - del /Q "%LIBRARY_PREFIX%\bin\janet.exe" 2>nul || ver>nul
             - del /Q "%LIBRARY_PREFIX%\lib\libjanet.a" 2>nul || ver>nul
+            # Copy header file instead of symlink (Windows doesn't support symlinks well)
+            - copy /Y "%LIBRARY_PREFIX%\include\janet\janet_%PKG_VERSION%.h" "%LIBRARY_PREFIX%\include\janet.h"
 
     requirements:
       build:
