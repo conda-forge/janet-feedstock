@@ -1,6 +1,6 @@
 context:
   name: janet
-  version: "1.40.1"
+  version: "1.41.2"
   soname: "1.39"
 
 recipe:
@@ -9,7 +9,7 @@ recipe:
 
 source:
   url: https://github.com/janet-lang/janet/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a
+  sha256: 168e97e1b790f6e9d1e43685019efecc4ee473d6b9f8c421b49c195336c0b725
   patches:
     - null-terminate.patch
     - disable-symlink.patch
