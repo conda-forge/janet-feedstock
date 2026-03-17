@@ -55,8 +55,10 @@ outputs:
     tests:
       - package_contents:
           lib:
-            - if: unix
-              then: libjanet${{ SHLIB_EXT }}
+            - if: linux
+              then: libjanet.so
+            - if: osx
+              then: libjanet.dylib
             - if: win
               then: janet-${{ soname }}.dll
           include:
